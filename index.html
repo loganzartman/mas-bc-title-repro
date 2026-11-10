@@ -1,0 +1,21 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MAS BC title repro</title>
+<mas-commerce-service checkout-client-id="acom_bc"></mas-commerce-service>
+<merch-card>
+  <aem-fragment fragment="9941bca0-5304-47f7-aeb3-4f638aeb8791"></aem-fragment>
+</merch-card>
+<pre id="out">Waiting for mas:ready…</pre>
+<script type="module">
+import 'https://www.adobe.com/mas/libs/commerce.js';
+import 'https://www.adobe.com/mas/libs/merch-card.js';
+
+const card = document.querySelector('merch-card');
+card.addEventListener('mas:ready', () => {
+  document.getElementById('out').textContent = [
+    `variant:   ${card.variant}`,
+    `card.title: ${JSON.stringify(card.title)}`,
+    `heading-s:  ${JSON.stringify(card.querySelector('[slot="heading-s"]')?.textContent.trim())}`,
+  ].join('\n');
+});
+</script>
